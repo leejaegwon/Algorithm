@@ -1,21 +1,12 @@
 import sys
-count = int(sys.stdin.readline())
-Matrix=[]
-for i in range(100):
-    Matrix.append([])
-    for j in range(100):
-        Matrix[i].append(False)
 
-for i in range(count):
-    N,M = map(int,sys.stdin.readline().split())
-    N = N - 1
-    M = M - 1 
-    for i in range(N,N+10):
-        for j in range(M,M+10):
-            Matrix[i][j] = True
-block = 0
-for i in range(len(Matrix)):
-    for j in range(len(Matrix[i])):
-        if Matrix[i][j] == True:
-            block += 1
-print(block)
+Map = [[0 for j in range(100)] for i in range(100)]
+papers = [list(map(int,data.split())) for data in sys.stdin.readlines()]
+for paper in papers[1:]:
+    W = paper[0]
+    H = paper[1]
+    for j in range(10):
+        for k in range(10):
+            Map[W+j][H+k] = 1
+area = sum([sum(i) for i in Map])
+print(area)
